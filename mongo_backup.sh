@@ -7,7 +7,7 @@ if [ -z "${PERIOD}" ]; then
 fi
 
 
-MONGO_DATABASE="medianap_adserver"
+MONGO_DATABASE=""
 APP_NAME="medianap"
 
 MONGO_HOST="127.0.0.1"
@@ -26,10 +26,10 @@ fi
 
 #FTP DETAILS 
 EXPORT_TO_FTP=true
-FTP_HOST="62.4.22.186"
+FTP_HOST=""
 FTP_PORT=21
-FTP_USERNAME="razzbiggie_backupdata"
-FTP_PASSWORD="sFT5mg1nVQ"
+FTP_USERNAME=""
+FTP_PASSWORD=""
 FTP_SUBDIR_PATH="/private/mongodb/$PERIOD/mn_mongo_backup.tar.gz"    #/var/www/medianap-backups.com
  
 # mongo admin --eval "printjson(db.fsyncLock())"
