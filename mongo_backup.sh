@@ -36,7 +36,7 @@ FTP_HOST=""
 FTP_PORT=21
 FTP_USERNAME=""
 FTP_PASSWORD=""
-FTP_SUBDIR_PATH="/private/mongodb/$PERIOD/mongo_backup.tar.gz"    #/var/www/medianap-backups.com
+FTP_SUBDIR_PATH="/mongodb/$PERIOD/mongo_backup.tar.gz"    #/var/www/medianap-backups.com
  
 # mongo admin --eval "printjson(db.fsyncLock())"
 # $MONGODUMP_PATH -h $MONGO_HOST:$MONGO_PORT -d $MONGO_DATABASE
