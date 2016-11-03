@@ -6,15 +6,21 @@ if [ -z "${PERIOD}" ]; then
    PERIOD="daily"
 fi
 
-
+#mongo dtabase name to backup
 MONGO_DATABASE=""
-APP_NAME="medianap"
 
+#App Name , Needed
+APP_NAME="MongoBackup"
+
+#mongo connection info
 MONGO_HOST="127.0.0.1"
 MONGO_PORT="27017"
 TIMESTAMP=`date +%Y-%m-%d`
 MONGODUMP_PATH="/usr/bin/mongodump"
-BACKUPS_DIR="/home/medianap/backups/mongodb"
+
+#Local Backup  Dir , needed 
+BACKUPS_DIR="/home/backups/mongodb"
+
 BACKUP_NAME="$APP_NAME-$TIMESTAMP.tar.gz"
 
 BACKUP_FILE_DEST="$BACKUPS_DIR/$BACKUP_NAME"
@@ -30,7 +36,7 @@ FTP_HOST=""
 FTP_PORT=21
 FTP_USERNAME=""
 FTP_PASSWORD=""
-FTP_SUBDIR_PATH="/private/mongodb/$PERIOD/mn_mongo_backup.tar.gz"    #/var/www/medianap-backups.com
+FTP_SUBDIR_PATH="/private/mongodb/$PERIOD/mongo_backup.tar.gz"    #/var/www/medianap-backups.com
  
 # mongo admin --eval "printjson(db.fsyncLock())"
 # $MONGODUMP_PATH -h $MONGO_HOST:$MONGO_PORT -d $MONGO_DATABASE
@@ -48,12 +54,3 @@ cd $BACKUPS_DIR
 #FTP ACTIVITIES 
 curl --ftp-create-dirs -T $BACKUP_FILE_DEST  -u $FTP_USERNAME:$FTP_PASSWORD  ftp://$FTP_HOST/$FTP_SUBDIR_PATH
 
-#ftp -inv -u "ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST:$FTP_PORT/$FTP_DIR" $BACKUP_FILE_DEST
-
-#ftp -niv $FTP_HOST <<EOD
-#quote USER $FTP_USERNAME
-#quote PASS $FTP_PASSWORD
-#cd $FTP_DIR
-#put $BACKUP_FILE_DEST
-#quit
-#EOD
