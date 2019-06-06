@@ -17,7 +17,7 @@ MONGO_HOST="127.0.0.1"
 MONGO_PORT="27017"
 MONGO_USER=""
 MONGO_PASS=""
-TIMESTAMP=`date +%Y-%m-%d`
+TIMESTAMP=`date '+%d-%m-%Y-%H-%M-%S'`
 MONGODUMP_PATH="/usr/bin/mongodump"
 
 #Local Backup  Dir , needed 
@@ -32,13 +32,14 @@ if [ -f "${BACKUP_FILE_DEST}" ]; then
  # exit
 fi
 
+
 #FTP DETAILS 
 EXPORT_TO_FTP=false
 FTP_HOST=""
 FTP_PORT=21
 FTP_USERNAME=""
 FTP_PASSWORD=""
-FTP_SUBDIR_PATH="/mongodb/$PERIOD/mongo_backup.tar.gz"    #/var/www/medianap-backups.com
+FTP_SUBDIR_PATH="/mongodb/$PERIOD/"    
  
 # mongo admin --eval "printjson(db.fsyncLock())"
 # $MONGODUMP_PATH -h $MONGO_HOST:$MONGO_PORT -d $MONGO_DATABASE
